@@ -1,0 +1,19 @@
+package programming2;
+
+import java.util.ArrayList;
+
+public class Student {
+	private String fName;
+	private String lName;
+	private String studentID;
+	private String major;
+	private ArrayList<Course> allCourses;
+	private ArrayList<Course> curCourses;
+	private ArrayList<String> courseIDs;
+	  public Student(String fName,String lName, String studentID, String major){
+	    	this.fName=fName;
+	    	this.lName=lName;
+	    	this.studentID=studentID;
+	    	this.major=major;
+	    	}
+}

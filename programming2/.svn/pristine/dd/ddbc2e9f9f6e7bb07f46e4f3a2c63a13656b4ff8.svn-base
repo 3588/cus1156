@@ -1,0 +1,119 @@
+package programming2;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * The Interface FacultyInterface.
+ * @author junjun
+ */
+public interface FacultyInterface {
+	
+	/**
+	 * Check professor id.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 * @return true, if successful
+	 */
+	boolean checkProfID(University university,String profID);
+	
+	/** The professor id. */
+	String profID=null;
+	
+	/**
+	 * Display faculty menu.
+	 *
+	 * @return the integral 
+	 */
+	int displayFacultyMenu();
+	
+	/**
+	 * Display current courses.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 */
+	void displayCurCourses(University university,String profID);
+	
+	/**
+	 * Display all courses.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 */
+	void displayAllCourses(University university,String profID);
+	
+	/**
+	 * Display course roster.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 * @param courseID the course id
+	 */
+	void displayCourseRoster(University university,String profID, String courseID);
+	
+	/**
+	 * Exit system.
+	 */
+	void exitSystem();
+
+}
+
+/**
+ * The Class Faculty.
+ */
+class Faculty implements FacultyInterface
+{
+	public boolean checkProfID(University university,String profID) {
+		return university.checkProfID(profID);
+	}
+
+	@Override
+	public int displayFacultyMenu() {
+		while(true)
+			{System.out.print("1.Current Courses\n2.All Courses\n3.Course Roster\n4.Exit System\n");
+		Scanner input = new Scanner(System.in);
+		int data = input.nextInt();
+		if(data>0&&data<5)
+			return data;
+		else
+			System.out.println("Wrong choose!");
+			}
+}
+
+	
+
+	@Override
+	public void displayCurCourses(University university, String profID) {
+		ArrayList<String> info = university.getProfCurCourses(profID);
+		for(String data : info)
+			System.out.println(data);
+	}
+
+	@Override
+	public void displayAllCourses(University university, String profID) {
+		ArrayList<String> info = university.getProfAllCourses(profID);
+		for(String data : info)
+			System.out.println(data);
+		
+	}
+
+	@Override
+	public void displayCourseRoster(University university, String profID,
+			String courseID) {
+		ArrayList<String> info = university.getCourseRoster(profID,courseID);
+		for(String data : info)
+			System.out.println(data);
+		
+	}
+
+
+
+	@Override
+	public void exitSystem() {
+		System.exit(-1);
+	}
+
+
+	}

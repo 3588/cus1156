@@ -1,0 +1,48 @@
+package programming2;
+
+public interface FacultyInterface {
+	String profID=null;
+	void displayFacultyMenu();
+	void displayCurCourses();
+	void displayAllCourses();
+	void displayCourseRoster();
+	void exitSystem();
+
+}
+
+/**
+ * The Class Faculty.
+ */
+class Faculty implements FacultyInterface
+{
+
+	@Override
+	public void displayFacultyMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayCurCourses() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayAllCourses() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayCourseRoster() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exitSystem() {
+		// TODO Auto-generated method stub
+		
+	}
+	}

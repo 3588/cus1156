@@ -1,0 +1,38 @@
+package programming2;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+/**
+ * loadData() return University;
+ * */
+public interface InitialLoader {
+	University loadData() throws FileNotFoundException;
+	void exitSystem();
+}
+class Initial implements InitialLoader
+{
+	@Override
+	public University loadData() throws FileNotFoundException {
+		File stu = new File("C:\\program2\\students.txt" );
+		File cour = new File("C:\\program2\\courses.txt" );
+		File prof = new File("C:\\program2\\professors.txt" );
+		University university = new University();
+		university.initialDataLoad(stu, cour, prof);
+		try {
+			university.regularDataLoad();
+			university.serializeData();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		return university;
+	}
+
+	@Override
+	public void exitSystem() {
+		System.exit(-1);
+		
+	}
+	
+	}

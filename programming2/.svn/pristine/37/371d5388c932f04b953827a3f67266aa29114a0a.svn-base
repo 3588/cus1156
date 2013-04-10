@@ -1,0 +1,56 @@
+package programming2;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public interface FacultyInterface {
+	String profID=null;
+	int displayFacultyMenu();
+	ArrayList<Course> displayCurCourses(Professor professor);
+	ArrayList<Course> displayAllCourses(Professor professor);
+	ArrayList<Course> displayCourseRoster(Professor professor);
+	void exitSystem();
+
+}
+
+/**
+ * The Class Faculty.
+ */
+class Faculty implements FacultyInterface
+{
+
+	@Override
+	public int displayFacultyMenu() {
+		while(true)
+			{System.out.print("1.Current Courses\n2.All Courses\n3.Course Roster\n4.Exit System\n");
+		Scanner input = new Scanner(System.in);
+		int data = input.nextInt();
+		return data;
+}
+
+	}
+
+	@Override
+	public ArrayList<Course> displayCurCourses(Professor professor){
+		ArrayList<Course> course = professor.sortCurCourses();
+		return course;
+
+	}
+
+	@Override
+	public ArrayList<Course> displayAllCourses(Professor professor) {
+		ArrayList<Course> course = professor.sortAllCourses();
+		return course;
+	}
+
+	@Override
+	public ArrayList<Course> displayCourseRoster(Professor professor) {
+		ArrayList<Course> course = professor.sortCurCourses();
+		return course; //wait to know the getCourseRoster() method, now return everything.
+	}
+
+	@Override
+	public void exitSystem() {
+		System.exit(-1);
+	}
+	}

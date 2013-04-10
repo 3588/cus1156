@@ -1,0 +1,55 @@
+package programming2;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public interface StudentInterface {
+	String studentID=null;
+	int displayStudentMenu();
+	void registerForCourse(Student student, Course course);
+	void dropCourse(Student student, Course course);
+	Course displayCurCourses(Student student);
+	Course displayAllCourses(Student student);
+	void exitSystem();
+}
+class Stuendt implements StudentInterface
+{
+
+	@Override
+	public int displayStudentMenu() {
+		while(true)
+		{System.out.print("1.Register Course\n2.Drop Course\n3.Display CurCourses\n4.Display All Courses\n5.Exit System");
+	Scanner input = new Scanner(System.in);
+	int data = input.nextInt();
+	return data;
+		}
+	}
+
+	@Override
+	public void registerForCourse(Student student, Course course) {
+		student.registerCourse(course);
+	}
+
+	@Override
+	public void dropCourse(Student student, Course course) {
+		student.dropCourse(course);
+		
+	}
+
+	@Override
+	public Course displayCurCourses(Student student) {
+		ArrayList<Course> course = student.getCurCourses();
+		return course;
+	}
+
+	@Override
+	public Course displayAllCourses(Student student) {
+		ArrayList<Course> course = student.getAllCourses();
+		return course;
+	}
+
+	@Override
+	public void exitSystem() {
+		System.exit(-1);
+	}
+	}

@@ -1,0 +1,188 @@
+package programming2;
+
+import java.util.*;
+
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Professor.
+ */
+public class Professor {
+	
+	/** The name. */
+	private	String fName;
+	
+	/** The l name. */
+	private String lName;
+	
+	/** The prof id. */
+	private String profID;
+	
+	/** The department. */
+	private String department;
+	
+	/** The all courses. */
+	private ArrayList<Course> allCourses = null;
+	
+	/** The cur courses. */
+	private ArrayList<Course> curCourses = null;
+	
+	  /**
+  	 * Creates a new instance of Professor.
+  	 *
+  	 * @param fName the f name
+  	 * @param lName the l name
+  	 * @param profID the prof id
+  	 * @param department the department
+  	 */
+    public Professor(String fName,String lName, String profID, String department){
+    	this.fName=fName;
+    	this.lName=lName;
+    	this.profID=profID;
+    	this.department=department;
+    	}
+    
+    
+	/**
+	 * Adds the course all courses.
+	 *
+	 * @param Courses the courses
+	 */
+	public void addCourseAllCourses(Course Courses){
+		allCourses.add(Courses);
+	}
+	
+	/**
+	 * Adds the course cur courses.
+	 *
+	 * @param Courses the courses
+	 */
+	public void addCourseCurCourses(Course Courses)
+	{
+		curCourses.add(Courses);
+	}
+	
+	/**
+	 * Sort all courses by semester.
+	 *
+	 * @return the array list
+	 */
+	public ArrayList<Course> sortAllCourses()
+	{
+		/**
+		 * Database for semester
+		 */
+		ArrayList<String> semesterName = null;
+		/**
+		 * Add each semester to database, and count it.
+		 */
+		for(int i=0; i<allCourses.size(); i++)
+		{
+			if(i==0)//add first semester
+			{
+				semesterName.add(allCourses.get(i).getSemSeason());
+			}
+			else
+			{
+				for(String t:semesterName)
+				{
+					if(!t.equals(allCourses.get(i).getSemSeason()))//if this semester not in database 
+					{
+						semesterName.add(allCourses.get(i).getSemSeason());
+					}
+				}
+			}
+		}
+		/**
+		 * template ArrayList for sort All Courses
+		 */
+		ArrayList<Course> Courses = null;
+		for(int i=0;i<semesterName.size();i++)
+			{
+			for(int j=0;j<allCourses.size();j++)
+			{
+				if(allCourses.get(j).getSemSeason().equals(semesterName.get(i)))
+				{
+					Courses.add(allCourses.get(j));
+				}
+			}
+			}
+		
+		return Courses;
+	}
+	
+	/**
+	 * Sort current courses byID.
+	 *
+	 * @return the array list
+	 */
+	public ArrayList<Course> sortCurCourses()
+	{
+		/**
+		 * Database for courseID
+		 */
+		int[] courseID = new int[curCourses.size()];
+		/**
+		 * transfer String courseID to INT courseID
+		 */
+		for(int i=0; i<curCourses.size(); i++)
+		{
+			try
+			{
+				courseID[i]=Integer.parseInt(curCourses.get(i).getCourseID());
+			}
+			catch(NumberFormatException NFE)
+			{
+			   System.out.println("Error courseID form");
+			}
+			
+		}
+		/**
+		 * 
+		 * bubble sort small to large for sort current Courses by ID
+		 */
+		for(int i=0; i<courseID.length-1; i++)
+		{
+			if(courseID[i]>courseID[i+1])
+			{
+				int temp = courseID[i];
+				Course Courses =curCourses.get(i);
+				courseID[i]=courseID[i+1];
+				curCourses.set(i, curCourses.get(i+1));
+				courseID[i+1] = temp;
+				curCourses.set(i+1, Courses);
+			}
+		}
+		return curCourses;
+	}
+	
+	/**
+	 * Gets the all courses.
+	 *
+	 * @return the all courses
+	 */
+	public ArrayList<Course> getAllCourses()
+	{
+		return allCourses;
+	}
+	
+	/**
+	 * Gets the cur courses.
+	 *
+	 * @return the current courses
+	 */
+	public ArrayList<Course> getCurCourses()
+	{
+		return curCourses;
+	}
+	
+	/**
+	 * Gets the prof id.
+	 *
+	 * @return the prof id
+	 */
+	public String getProfID()
+	{
+		return profID;
+	}
+}

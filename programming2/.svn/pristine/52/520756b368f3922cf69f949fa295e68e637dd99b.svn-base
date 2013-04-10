@@ -1,0 +1,179 @@
+package programming2;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * The Interface FacultyInterface.
+ * @author junjun
+ */
+public interface FacultyInterface {
+	
+	/**
+	 * Check professor id.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 * @return true, if successful
+	 */
+	University data = new University();
+	boolean checkProfID(String profID);
+	
+	/** The professor id. */
+	String profID=null;
+	
+	/**
+	 * Display faculty menu.
+	 *
+	 * @return the integral 
+	 */
+	int displayFacultyMenu();
+	
+	/**
+	 * Display current courses.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 */
+	void displayCurCourses(String profID);
+	
+	/**
+	 * Display all courses.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 */
+	void displayAllCourses(String profID);
+	
+	/**
+	 * Display course roster.
+	 *
+	 * @param university the university
+	 * @param profID the professor id
+	 * @param courseID the course id
+	 */
+	void displayCourseRoster(String profID, String courseID);
+	
+	/**
+	 * Exit system.
+	 */
+	void exitSystem();
+
+}
+
+/**
+ * The Class Faculty.
+ */
+class Faculty implements FacultyInterface
+{
+	public boolean checkProfID(String profID) {
+		try {
+			data.regularDataLoad();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return data.checkProfID(profID);
+	}
+
+	@Override
+	public int displayFacultyMenu() {
+		while(true)
+			{System.out.print("1.Current Courses\n2.All Courses\n3.Course Roster\n4.Exit System\n");
+		Scanner input = new Scanner(System.in);
+		int data = input.nextInt();
+		if(data>0&&data<5)
+			return data;
+		else
+			System.out.println("Wrong choose!");
+			}
+}
+
+	
+
+	@Override
+	public void displayCurCourses( String profID) {
+		try {
+			data.regularDataLoad();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<String> info = data.getProfCurCourses(profID);
+		for(String data : info)
+			System.out.println(data);
+	}
+
+	@Override
+	public void displayAllCourses(String profID) {
+		try {
+			data.regularDataLoad();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<String> info = data.getProfAllCourses(profID);
+		for(String data : info)
+			System.out.println(data);
+		
+	}
+
+	@Override
+	public void displayCourseRoster(String profID,
+			String courseID) {
+		try {
+			data.regularDataLoad();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<String> info = data.getCourseRoster(profID,courseID);
+		for(String data : info)
+			System.out.println(data);
+		
+	}
+
+
+
+	@Override
+	public void exitSystem() {
+		try {
+			data.serializeData();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.exit(-1);
+	}
+
+
+	}

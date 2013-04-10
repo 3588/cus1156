@@ -1,0 +1,61 @@
+package programming2;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public interface InitialLoader {
+	void loadData(ArrayList<Student> students, ArrayList<Course> courses, ArrayList<Professor> professors);
+	void exitSystem();
+}
+class Initial implements InitialLoader
+{
+
+	@Override
+	public void loadData(ArrayList<Student> students, ArrayList<Course> courses, ArrayList<Professor> professors) {
+		/*Student*/
+		try {
+			Scanner fileIn = new Scanner( new File("C:\\program2\\students.txt" ));
+			while (fileIn.hasNext()) {
+	              String data = fileIn.next();
+	              String[] value = data.split("\\ ");
+	              Student student = new Student(value[0],value[1],value[2],value[3]);//String fName,String lName, String studentID, String major
+	              students.add(student);
+	          }
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		/*Professor*/
+		try {
+			Scanner fileIn = new Scanner( new File("C:\\program2\\professors.txt" ));
+			while (fileIn.hasNext()) {
+	              String data = fileIn.next();
+	              String[] value = data.split("\\ ");
+	              Professor professor = new Professor(value[0],value[1],value[2],value[3]);//String fName,String lName, String studentID, String major
+	              professors.add(professor);
+	          }
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		/*courses*/
+		try {
+			Scanner fileIn = new Scanner( new File("C:\\program2\\courses.txt" ));
+			while (fileIn.hasNext()) {
+	              String data = fileIn.next();
+	              String[] value = data.split("\\ ");
+	              Course course = new Course(value[0],value[1],value[2],Integer.parseInt(value[3]),value[4],value[5]);//String courseName,String courseID, String profID, int enrollmentCap, String semSeason, String semYear
+	              courses.add(course);
+	          }
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	@Override
+	public void exitSystem() {
+		System.exit(-1);
+	}
+	}

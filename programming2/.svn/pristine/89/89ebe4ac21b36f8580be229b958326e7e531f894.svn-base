@@ -1,0 +1,124 @@
+package programming2;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * The user interface for Student.
+ *
+ * @author junjun
+ */
+public interface StudentInterface {
+	
+	/**
+	 * Check student id.
+	 *
+	 * @param university the university
+	 * @param studentID the student id
+	 * @return true, if successful
+	 */
+	boolean checkStudentID(University university,String studentID);
+	
+	/**
+	 * Display student menu.
+	 *
+	 * @return the integral 
+	 */
+	int displayStudentMenu();
+	
+	/**
+	 * Register for course.
+	 *
+	 * @param university the university
+	 * @param studentID the student id
+	 * @param courseID the course id
+	 * @return the university
+	 */
+	University registerForCourse(University university, String studentID, String courseID);
+	
+	/**
+	 * Drop course.
+	 *
+	 * @param university the university
+	 * @param studentID the student id
+	 * @param courseID the course id
+	 * @return the university
+	 */
+	University dropCourse(University university, String studentID, String courseID);
+	
+	/**
+	 * Display current courses.
+	 *
+	 * @param university the university
+	 * @param studentID the student id
+	 */
+	void displayCurCourses(University university, String studentID);
+	
+	/**
+	 * Display all courses.
+	 *
+	 * @param university the university
+	 * @param studentID the student id
+	 */
+	void displayAllCourses(University university, String studentID);
+	
+	/**
+	 * Exit system.
+	 */
+	void exitSystem();
+}
+class Stuendt implements StudentInterface
+{
+	@Override
+	public boolean checkStudentID(University university,String studentID) {
+		return university.checkStudentID(studentID);
+	}
+
+	@Override
+	public int displayStudentMenu() {
+		while(true)
+		{
+		System.out.print("1.Register Course\n2.Drop Course\n3.Display CurCourses\n4.Display All Courses\n5.Exit System");
+	Scanner input = new Scanner(System.in);
+	int data = input.nextInt();
+	if(data>0&&data<6)
+		return data;
+	else
+		System.out.println("Wrong choose!");
+		}
+	}
+
+	@Override
+	public University registerForCourse(University university, String studentID, String courseID) {
+		university.registerForCourse(studentID, courseID);
+		return university;
+	}
+
+	@Override
+	public University dropCourse(University university, String studentID, String courseID) {
+		university.dropCourseCurSemester(studentID, courseID);
+		return university;
+		
+	}
+
+	@Override
+	public void displayCurCourses(University university, String studentID) {
+		ArrayList<String> info = university.getStudentCurCourses(studentID);
+		for(String data : info)
+			System.out.println(data);
+	}
+
+	@Override
+	public void displayAllCourses(University university, String studentID) {
+		ArrayList<String> info = university.getStudentAllCourses(studentID);
+		for(String data : info)
+			System.out.println(data);
+	}
+
+	@Override
+	public void exitSystem() {
+		System.exit(-1);
+	}
+
+
+	}

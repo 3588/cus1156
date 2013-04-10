@@ -1,0 +1,50 @@
+package programming2;
+
+public interface StudentInterface {
+	String studentID=null;
+	void displayStudentMenu();
+	void registerForCourse();
+	void dropCourse();
+	void displayCurCourses();
+	void displayAllCourses();
+	void exitSystem();
+}
+class Stuendt implements StudentInterface
+{
+
+	@Override
+	public void displayStudentMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerForCourse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dropCourse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayCurCourses() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayAllCourses() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exitSystem() {
+		// TODO Auto-generated method stub
+		
+	}
+	}

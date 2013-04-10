@@ -1,0 +1,31 @@
+package programming2;
+
+import java.util.ArrayList;
+
+public class Course {
+	private String courseName;
+	private String courseID;
+	private String profID;
+	private int enrollmentCap;
+	private String semSeason;
+	private String semYear;
+	private ArrayList<String> studentInfo;
+	  public Course(String courseName,String courseID, String profID, int enrollmentCap, String semSeason, String semYear){
+	    	this.courseName=courseName;
+	    	this.courseID=courseID;
+	    	this.profID=profID;
+	    	this.enrollmentCap=enrollmentCap;
+	    	this.semSeason=semSeason;
+	    	this.semYear=semYear;
+	    	}
+	public void addStudent(){};
+	public void dropStudent(){};
+	public void  getCourseRoster(){};
+	public String  getCourseID(){
+		return null;};
+	public String  getSemSeason(){
+		return null;};
+	public void  getSemYear(){};
+	public void  getCourseInfo(){};
+	public void  getProfID(){};
+}

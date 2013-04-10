@@ -1,0 +1,169 @@
+package programming2;
+
+import java.io.Serializable;
+import java.util.*;
+
+/**
+ * The Student class, one of the three main classes for the program.  Holds all relevant
+ * information for a student, including arrayLists of current courses, as well as all
+ * courses, that the student is or have taken.  Also contains methods which sort those
+ * arrayLists, and other methods to return relevant information to the user, or other
+ * parts of the program.
+ * @author Patrick Steel
+ *
+ */
+public class Student implements Serializable{
+	private String fName;
+	private String lName;
+	private String studentID;
+	private String major;
+	ArrayList<Course> allCourses = new ArrayList<Course>();
+	ArrayList<Course> curCourses = new ArrayList<Course>();
+	ArrayList<String> courseIDs = new ArrayList<String>();
+	
+	/**
+	 * Simple constructor for the Student class.
+	 * @param firstName
+	 * @param lastName
+	 * @param studID
+	 * @param maj
+	 */
+	public Student(String firstName, String lastName, String studID, String maj){
+		fName = firstName;
+		lName = lastName;
+		studentID = studID;
+		major = maj;
+	}
+	
+	/**
+	 * Add's a course ID to a String arrayList of course IDs.  This method will only be called
+	 * if, during the initial file upload, the program notes the the student has taken previous
+	 * courses at the university.
+	 * @param courseID
+	 */
+	public void addCourseID(String courseID){
+		courseIDs.add(courseID);
+	}
+	
+	/**
+	 * Adds a particular course to a list of all courses the student has taken.
+	 * @param course
+	 */
+	public void addCourseAllCourses(Course course){
+		allCourses.add(course);
+	}
+	
+	/**
+	 * Adds a particular course to a list of current courses the student is taking.
+	 * @param course
+	 */
+	public void addCourseCurCourses(Course course){
+		curCourses.add(course);
+	}
+	
+	/**
+	 * Adds a particular course to both the arrayList of all courses the student as taken,
+	 * as well as the arrayList of current courses the student is taking.
+	 * @param course
+	 */
+	public void registerCourse(Course course){
+		addCourseAllCourses(course);
+		addCourseCurCourses(course);
+	}
+	
+	/**
+	 * Will remove an indicated course (to be searching in the arrayLists via its
+	 * courseID) from both a student's current courses, as well as all their courses.
+	 * @param courseID
+	 */
+	public void dropCourse(String courseID){
+		int index1 = -1;
+		for(Course cour : curCourses){
+			if(courseID.equals(cour.getCourseID())){
+				index1 = curCourses.indexOf(cour);
+			}
+		}
+		curCourses.remove(index1);
+		
+		int index2 = -1;
+		for(Course cour : allCourses){
+			if(courseID.equals(cour.getCourseID())){
+				index2 = allCourses.indexOf(cour);
+			}
+		}
+		allCourses.remove(index2);
+	}
+	
+	/**
+	 * Sorts the arrayList of all courses taken by the student, using the
+	 * ComparatorBySemester class.
+	 */
+	public void sortAllCourses(){
+		Comparator<Course> comparator = new ComparatorBySemester();
+		Collections.sort(allCourses, comparator);
+	}
+	
+	/**
+	 * Sorts the arrayList of current courses taken by the student, using
+	 * the ComparatorByID class.
+	 */
+	public void sortCurCourses(){
+		Comparator<Course> comparator = new ComparatorByID();
+		Collections.sort(curCourses, comparator);
+	}
+	
+	/**
+	 * Returns a String arrayList of all course info, for all of the courses
+	 * the student has taken.
+	 * @return
+	 */
+	public ArrayList<String> getAllCourses(){
+		ArrayList<String> allCourseInfo = new ArrayList<String>();
+		for (Course cour : allCourses){
+			String info = cour.getCourseName() + " " + cour.getCourseID() + " " +
+						cour.getSemSeason() + " " + cour.getSemYear();
+			allCourseInfo.add(info);
+		}
+		return allCourseInfo;
+	}
+	
+	/**
+	 * Returns a String arrayList of all course info, for all of the CURRENT
+	 * courses the student has taken.
+	 * @return
+	 */
+	public ArrayList<String> getCurCourses(){
+		ArrayList<String> curCourseInfo = new ArrayList<String>();
+		for (Course cour : curCourses){
+			String info = cour.getCourseName() + " " + cour.getCourseID() + " " +
+						cour.getSemSeason() + " " + cour.getSemYear();
+			curCourseInfo.add(info);
+		}
+		return curCourseInfo;
+	}
+	
+	/**
+	 * Returns a simple String of basic student info.
+	 * @return
+	 */
+	public String getStudentInfo(){
+		String studentInfo = fName + " " + lName + " " + studentID;
+		return studentInfo;
+	}
+	
+	/**
+	 * Returns the Student's studentID.
+	 * @return
+	 */
+	public String getStudentID(){
+		return studentID;
+	}
+	
+	/**
+	 * Returns the String arrayList of courseIDs that the student holds.
+	 * @return
+	 */
+	public ArrayList<String> getCourseIDs(){
+		return courseIDs;
+	}
+}
