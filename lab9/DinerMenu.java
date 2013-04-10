@@ -38,7 +38,27 @@ public class DinerMenu  {
 			numberOfItems = numberOfItems + 1;
 		}
 	}
- 
+	class createIterator
+	{
+		public MenuItem next()
+		{
+			if(hasNext())
+				return menuItems[1];
+			else
+				return null;
+		}
+		public boolean hasNext()
+		{
+			if(menuItems[0]==null||menuItems[1]==null)
+				return false;
+			else
+				return true;
+		}
+		public void remove()
+		{
+			newMenuItems = new MenuItem[menuItems.length-1];
+		}
+	}
 	
 	
 
