@@ -1,4 +1,4 @@
-package lab9;
+package lab9.extra;
 
 public class MenuItem {
 	private String name;

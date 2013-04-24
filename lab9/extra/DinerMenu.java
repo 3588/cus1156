@@ -1,9 +1,10 @@
-package lab9;
+package lab9.extra;
 
 
 import java.util.Iterator;
 
 public class DinerMenu  {
+
 	static final int MAX_ITEMS = 6;
 	private int numberOfItems = 0;
 	private MenuItem[] menuItems;
@@ -38,28 +39,11 @@ public class DinerMenu  {
 			numberOfItems = numberOfItems + 1;
 		}
 	}
-	class createIterator
-	{
-		public MenuItem next()
-		{
-			if(hasNext())
-				return menuItems[1];
-			else
-				return null;
-		}
-		public boolean hasNext()
-		{
-			if(menuItems[0]==null||menuItems[1]==null)
-				return false;
-			else
-				return true;
-		}
-		public void remove()
-		{
-			newMenuItems = new MenuItem[menuItems.length-1];
-		}
+	//part 3
+	public Iterator createIterator() {
+		return new MenuLterator(menuItems);
 	}
 	
-	
+
 
 }

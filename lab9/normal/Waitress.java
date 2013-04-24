@@ -1,4 +1,4 @@
-package lab9;
+package lab9.normal;
 
 
 import java.util.*;
@@ -14,34 +14,39 @@ public class Waitress {
 	}
  
 	public void printMenu() {
-		PancakeHouseMenu.PancakeMenuIterator pancakeIterator = pancakeHouseMenu.createIterator();
-		DinerMenu.DinerMenuIterator dinerIterator = dinerMenu.createIterator();
+		MenuIterator pancakeIterator = pancakeHouseMenu.createIterator();
+		MenuIterator dinerIterator = dinerMenu.createIterator();
 
 		System.out.println("MENU\n----\nBREAKFAST");
-		while (pancakeIterator.hasNext()){
+		printMenu(pancakeIterator);
+	/*while (pancakeIterator.hasNext()){
 			MenuItem menuItem = pancakeIterator.next();
 			System.out.print(menuItem.getName() + ", ");
 			System.out.print(menuItem.getPrice() + " -- ");
 			System.out.println(menuItem.getDescription());
 	}
+	*/
 			
 		System.out.println("\nLUNCH");
-		while (dinerIterator.hasNext()) {
+		printMenu(dinerIterator);
+		/*while (dinerIterator.hasNext()) {
 			MenuItem menuItem = dinerIterator.next();
 			System.out.print(menuItem.getName() + ", ");
 			System.out.print(menuItem.getPrice() + " -- ");
 			System.out.println(menuItem.getDescription());
-	}
+		
+	}*/
 	}
  
-	/*private void printMenu(Iterator iterator) {
-		while (iterator.hasNext()) {
-			MenuItem menuItem = (MenuItem)iterator.next();
+	private void printMenu(MenuIterator pancakeIterator) {
+		while (pancakeIterator.hasNext()) {
+			MenuItem menuItem = (MenuItem)pancakeIterator.next();
 			System.out.print(menuItem.getName() + ", ");
 			System.out.print(menuItem.getPrice() + " -- ");
 			System.out.println(menuItem.getDescription());
+			//pancakeIterator.remove();
 		}
-	}*/
+	}
  
 	
 

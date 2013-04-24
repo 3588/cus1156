@@ -1,0 +1,6 @@
+0.0,2223,Jones,Fred
+100.56,3334,Lee,Karen
+300.45,3456,Spacca,Mary
+56.00,8978,Martin,Kelly
+200.00,2222,Jones,Fred
+-10.00,8979,Martin,Kelly

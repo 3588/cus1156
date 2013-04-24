@@ -1,4 +1,4 @@
-package lab9;
+package lab9.extra;
 
 
 import java.util.ArrayList;
@@ -37,47 +37,9 @@ public class PancakeHouseMenu  {
 		MenuItem menuItem = new MenuItem(name, description, vegetarian, price);
 		menuItems.add(menuItem);
 	}
- 
+
+	public  Iterator createIterator() {
+		return menuItems.iterator();
+	}
 	
-	//part 3
-	class createIterator
-	{
-		private ArrayList<MenuItem> position;
-	    private ArrayList<MenuItem> previous;
-	    
-	    public createIterator()
-	    {
-	    	position = null;
-	    	previous = null;
-	    }
-	    
-	      
-	public ArrayList<MenuItem> next()
-	{   
-		if (!hasNext())
-        throw new NoSuchElementException();
-     previous = position; // Remember for remove
-
-     if (position == null)
-        position = menuItems;
-     else
-        position = position.next;
-
-     return position.data;
-		return null;
-		
-	}
-	public boolean hasNext()
-	{
-		if (position == null)
-	            return menuItems != null;
-	         else
-	            return position.next != null;
-		return true;
-	}
-	public void remove()
-	{
-		
-	}
-	}
 }

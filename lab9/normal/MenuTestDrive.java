@@ -1,7 +1,4 @@
-package cus1156.lab9;
-
-
-import java.util.*;
+package lab9.normal;
 
 public class MenuTestDrive {
 	public static void main(String args[]) {
